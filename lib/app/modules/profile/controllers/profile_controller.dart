@@ -5,6 +5,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:hallo_doctor_client/app/modules/chat/views/list_users_view.dart';
+import 'package:hallo_doctor_client/app/service/notification_service.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:hallo_doctor_client/app/modules/profile/views/pages/change_password.dart';
 import 'package:hallo_doctor_client/app/modules/profile/views/pages/edit_image_page.dart';
@@ -120,8 +121,11 @@ class ProfileController extends GetxController {
 //user for testing something
   Future testButton() async {
     try {
-      print('my uid : ' + UserService().currentUser!.uid);
-      Get.to(() => ListUser());
+      // print('my uid : ' + UserService().currentUser!.uid);
+      // Get.to(() => ListUser());
+      NotificationService notificationService = Get.find<NotificationService>();
+      await Future.delayed(Duration(seconds: 10));
+      notificationService.showCallNotification('amsyari', 'roomname', 'token');
     } catch (e) {
       return Future.error(e.toString());
     }

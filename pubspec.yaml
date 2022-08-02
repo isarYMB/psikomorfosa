@@ -47,7 +47,7 @@ dependencies:
     git: https://github.com/amsyary/flutter_chat_ui.git
   flutter_firebase_chat_core:
     git: https://github.com/amsyary/flutter_firebase_chat_core.git
-  flutter_local_notifications: ^9.5.3+1
+  flutter_local_notifications: ^9.7.0
   timezone: ^0.8.0
   flutter_native_timezone: ^2.0.0
   jiffy: ^5.0.0
