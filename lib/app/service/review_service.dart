@@ -8,23 +8,22 @@ import 'package:hallo_doctor_client/app/service/user_service.dart';
 class ReviewService {
   Future saveReview(
       String review, int rating, TimeSlot timeSlot, User user) async {
-    print('review : ' + review);
-
-    await FirebaseFirestore.instance
-        .collection('Review')
-        .doc(timeSlot.timeSlotId)
-        .set({
-      'review': review,
-      'rating': rating,
-      'timeSlotId': timeSlot.timeSlotId,
-      'userId': UserService().currentUser!.uid,
-      'doctorId': timeSlot.doctorid,
-      'user': {
-        'displayName': UserService().currentUser!.displayName,
-        'photoUrl': UserService().getProfilePicture(),
-      }
-    });
-    try {} catch (e) {
+    try {
+      await FirebaseFirestore.instance
+          .collection('Review')
+          .doc(timeSlot.timeSlotId)
+          .set({
+        'review': review,
+        'rating': rating,
+        'timeSlotId': timeSlot.timeSlotId,
+        'userId': UserService().currentUser!.uid,
+        'doctorId': timeSlot.doctorid,
+        'user': {
+          'displayName': UserService().currentUser!.displayName,
+          'photoUrl': UserService().getProfilePicture(),
+        }
+      });
+    } catch (e) {
       return Future.error(e.toString());
     }
   }

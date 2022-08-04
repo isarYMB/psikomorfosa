@@ -125,7 +125,7 @@ class ProfileController extends GetxController {
       // Get.to(() => ListUser());
       NotificationService notificationService = Get.find<NotificationService>();
       await Future.delayed(Duration(seconds: 10));
-      notificationService.showCallNotification('amsyari', 'roomname', 'token');
+      // notificationService.showCallNotification('amsyari', 'roomname', 'token');
     } catch (e) {
       return Future.error(e.toString());
     }

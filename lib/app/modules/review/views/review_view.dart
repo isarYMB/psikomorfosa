@@ -35,6 +35,7 @@ class ReviewView extends GetView<ReviewController> {
                   ),
                   Divider(),
                   TextField(
+                    controller: controller.textEditingReviewController,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: 'Your Review'.tr),

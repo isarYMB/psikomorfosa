@@ -8,6 +8,8 @@ import 'package:flutter_callkit_incoming/flutter_callkit_incoming.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 import 'package:get/get.dart';
+import 'package:hallo_doctor_client/app/models/time_slot_model.dart';
+import 'package:hallo_doctor_client/app/service/timeslot_service.dart';
 import 'package:hallo_doctor_client/app/utils/styles/styles.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
@@ -68,8 +70,11 @@ class NotificationService {
       if (notification != null && android != null) {
         print('masuk notifikasinya');
         if (message.data['type'] == 'call') {
-          await showCallNotification(message.data['fromName'],
-              message.data['roomName'], message.data['token']);
+          await showCallNotification(
+              message.data['fromName'],
+              message.data['roomName'],
+              message.data['token'],
+              message.data['timeSlotId']);
         } else {
           flutterLocalNotificationsPlugin.show(
               notification.hashCode,
@@ -104,8 +109,8 @@ class NotificationService {
     //printInfo(info: 'local timezone : ' + currentTimeZone);
   }
 
-  void setupNotificationAction() {
-    FlutterCallkitIncoming.onEvent.listen((event) {
+  void setupNotificationAction() async {
+    FlutterCallkitIncoming.onEvent.listen((event) async {
       switch (event!.name) {
         case CallEvent.ACTION_CALL_INCOMING:
           print('incoming call gaes');
@@ -113,8 +118,11 @@ class NotificationService {
         case CallEvent.ACTION_CALL_ACCEPT:
           print('body ' + event.body['extra']['roomName']);
           print('accept the data');
+          TimeSlot selectedTimeslot = await TimeSlotService()
+              .getTimeSlotById(event.body['extra']['selectedTimeslotId']);
           Get.toNamed('/video-call', arguments: [
             {
+              'timeSlot': selectedTimeslot,
               'room': event.body['extra']['roomName'],
               'token': event.body['extra']['token']
             }
@@ -131,8 +139,8 @@ class NotificationService {
     // );
   }
 
-  Future showCallNotification(
-      String fromName, String roomName, String token) async {
+  Future showCallNotification(String fromName, String roomName, String token,
+      String selectectedTimeslotId) async {
     var params = <String, dynamic>{
       'id': 'adsfadfds',
       'nameCaller': fromName,
@@ -145,7 +153,11 @@ class NotificationService {
       'textMissedCall': 'Missed call',
       'textCallback': 'Call back',
       'duration': 30000,
-      'extra': <String, dynamic>{'roomName': roomName, 'token': token},
+      'extra': <String, dynamic>{
+        'roomName': roomName,
+        'token': token,
+        'selectedTimeslotId': selectectedTimeslotId
+      },
       'headers': <String, dynamic>{'apiKey': 'Abc@123!', 'platform': 'flutter'},
       'android': <String, dynamic>{
         'isCustomNotification': true,

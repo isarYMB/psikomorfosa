@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:hallo_doctor_client/app/models/time_slot_model.dart';
 import 'package:hallo_doctor_client/app/service/review_service.dart';
@@ -9,6 +11,7 @@ class ReviewController extends GetxController {
 
   var review = '';
   var rating = 5.0.obs;
+  TextEditingController textEditingReviewController = TextEditingController();
   TimeSlot timeSlot = Get.arguments;
   var price = 0.obs;
 
@@ -23,10 +26,14 @@ class ReviewController extends GetxController {
   void saveReiew() async {
     EasyLoading.show(maskType: EasyLoadingMaskType.black);
     var user = UserService().currentUser;
-    ReviewService()
-        .saveReview(review, rating.value.toInt(), timeSlot, user!)
-        .then((value) {
+    try {
+      await ReviewService().saveReview(textEditingReviewController.text,
+          rating.value.toInt(), timeSlot, user!);
       Get.back();
-    }).whenComplete(() => EasyLoading.dismiss());
+    } catch (e) {
+      Fluttertoast.showToast(msg: e.toString());
+    } finally {
+      EasyLoading.dismiss();
+    }
   }
 }

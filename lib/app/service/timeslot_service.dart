@@ -29,6 +29,20 @@ class TimeSlotService {
     }
   }
 
+  Future<TimeSlot> getTimeSlotById(String timeslotId) async {
+    try {
+      var timeslotRef = await FirebaseFirestore.instance
+          .collection('DoctorTimeslot')
+          .doc(timeslotId)
+          .get();
+
+      TimeSlot timeslot = TimeSlot.fromFirestore(timeslotRef);
+      return timeslot;
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
+
   Future rescheduleTimeslot(
       TimeSlot timeSlotNow, TimeSlot timeslotChanged) async {
     try {
