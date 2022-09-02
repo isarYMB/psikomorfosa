@@ -62,7 +62,7 @@ class Doctor {
       this.doctorPicture,
       this.doctorPrice,
       this.doctorShortBiography,
-      this.doctorCategory,
+      this.categoryName,
       this.doctorHospital,
       this.accountStatus});
   String? id;
@@ -76,8 +76,10 @@ class Doctor {
   int? doctorPrice;
   @JsonKey(name: 'doctorBiography')
   String? doctorShortBiography;
-  @JsonKey(name: 'doctorCategory', toJson: doctorcategoryToJson)
-  DoctorCategory? doctorCategory;
+  // @JsonKey(name: 'doctorCategory', toJson: doctorcategoryToJson)
+  // DoctorCategory? doctorCategory;
+  @JsonKey(name: 'categoryName')
+  dynamic categoryName;
   @JsonKey(name: 'doctorHospital')
   String? doctorHospital;
   @JsonKey(name: 'accountStatus')
@@ -86,7 +88,7 @@ class Doctor {
   Map<String, dynamic> toJson() => _$DoctorToJson(this);
   factory Doctor.fromFirestore(DocumentSnapshot doc) =>
       Doctor.fromJson(doc.data()! as Map<String, dynamic>)..id = doc.id;
-  static Map<String, dynamic>? doctorcategoryToJson(
-          DoctorCategory? doctorcategory) =>
-      doctorcategory?.toJson();
+  // static Map<String, dynamic>? doctorcategoryToJson(
+  //         DoctorCategory? doctorcategory) =>
+  //     doctorcategory?.toJson();
 }

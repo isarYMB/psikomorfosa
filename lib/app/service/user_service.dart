@@ -54,7 +54,7 @@ class UserService {
     try {
       currentUser!.updatePhotoURL(url);
       FirebaseFirestore.instance
-          .collection('Users')
+          .collection('users')
           .doc(currentUser!.uid)
           .update({'photoUrl': url});
     } catch (err) {
@@ -64,7 +64,10 @@ class UserService {
 
   Future updateEmail(String email) async {
     try {
-      currentUser!.updateEmail(email);
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(currentUser!.uid)
+          .update({'email': email});
     } on FirebaseAuthException catch (err) {
       return Future.error(err.message!);
     }
@@ -89,7 +92,7 @@ class UserService {
   Future<UserModel?> getUsernameById(String userId) async {
     try {
       var user = await FirebaseFirestore.instance
-          .collection('Users')
+          .collection('users')
           .doc(userId)
           .get();
       user.data();
@@ -104,7 +107,7 @@ class UserService {
   Future updateUserToken(String? token) async {
     try {
       FirebaseFirestore.instance
-          .collection('Users')
+          .collection('users')
           .doc(currentUser!.uid)
           .update({'token': token});
     } catch (e) {
@@ -114,10 +117,83 @@ class UserService {
 
   Future<bool> checkIfUserExist() async {
     var userSnapshot = await FirebaseFirestore.instance
-        .collection('Users')
+        .collection('users')
         .doc(currentUser!.uid)
         .get();
     if (userSnapshot.exists) return true;
     return false;
+  }
+
+  //Kuisioner
+  Future kejadian(String kejadian) async {
+    try {
+      // currentUser!.updateEmail(coba);
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(currentUser!.uid)
+          .update({'kejadian': kejadian});
+    } on FirebaseAuthException catch (err) {
+      return Future.error(err.message!);
+    }
+  }
+
+  Future dampak(String dampak) async {
+    try {
+      // currentUser!.updateEmail(coba);
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(currentUser!.uid)
+          .update({'dampak': dampak});
+    } on FirebaseAuthException catch (err) {
+      return Future.error(err.message!);
+    }
+  }
+
+  Future Kronologi(String Kronologi) async {
+    try {
+      // currentUser!.updateEmail(coba);
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(currentUser!.uid)
+          .update({'Kronologi': Kronologi});
+    } on FirebaseAuthException catch (err) {
+      return Future.error(err.message!);
+    }
+  }
+
+  Future Perubahan(String Perubahan) async {
+    try {
+      // currentUser!.updateEmail(coba);
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(currentUser!.uid)
+          .update({'Perubahan': Perubahan});
+    } on FirebaseAuthException catch (err) {
+      return Future.error(err.message!);
+    }
+  }
+
+  Future jenisKelamin(String jenisKelamin) async {
+    try {
+      // currentUser!.updateEmail(coba);
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(currentUser!.uid)
+          .update({'jenisKelamin': jenisKelamin});
+    } on FirebaseAuthException catch (err) {
+      return Future.error(err.message!);
+    }
+  }
+
+  Future umur(String umur) async {
+    try {
+      // currentUser!.updateEmail(coba);
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(currentUser!.uid)
+          .update({'umur': umur});
+    } on FirebaseAuthException catch (err) {
+      return Future.error(err.message!);
+    }
   }
 }

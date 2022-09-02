@@ -14,6 +14,7 @@ class HomeController extends GetxController {
   UserService userService = Get.find();
   var userPicture = ''.obs;
   List<String?> listImageCarousel = [];
+  var profilePic = ''.obs;
 
   @override
   void onInit() async {
@@ -23,6 +24,12 @@ class HomeController extends GetxController {
     listImageCarousel = await CarouselService().getListCarouselUrl();
     print('jumlah image carousel : ' + listImageCarousel.length.toString());
     update();
+  }
+
+  @override
+  void onReady() {
+    super.onReady();
+    profilePic.value = userService.getProfilePicture()!;
   }
 
   @override
@@ -36,11 +43,11 @@ class HomeController extends GetxController {
   }
 
   void toDoctorCategory() {
-    Get.find<DashboardController>().selectedIndex = 1;
+    Get.toNamed('/doctor-category');
   }
 
-  void toTopRatedDoctor() {
-    Get.toNamed('/top-rated-doctor');
+  void toAppointment() {
+    Get.toNamed('/appointment');
   }
 
   void toSearchDoctor() {

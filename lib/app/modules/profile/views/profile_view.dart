@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:hallo_doctor_client/app/modules/profile/views/widgets/header_curve_widget.dart';
 import 'package:hallo_doctor_client/app/modules/profile/views/widgets/profile_button.dart';
 import 'package:hallo_doctor_client/app/utils/localization.dart';
+import 'package:hallo_doctor_client/imports.dart';
 import '../controllers/profile_controller.dart';
 import 'widgets/display_image_widget.dart';
 
@@ -57,21 +58,26 @@ class ProfileView extends GetView<ProfileController> {
                         controller.toUpdateEmail();
                       },
                     ),
-                    ProfileButton(
-                      icon: Icons.password,
-                      text: 'Change Password'.tr,
-                      onTap: () {
-                        controller.toChangePassword();
-                      },
-                    ),
+                    // ProfileButton(
+                    //   icon: Icons.password,
+                    //   text: 'Change Password'.tr,
+                    //   onTap: () {
+                    //     controller.toChangePassword();
+                    //   },
+                    // ),
                     SizedBox(
                       height: 20,
                     ),
                     Container(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () {
-                          controller.logout();
+                        onPressed: () async {
+                          // controller.authService.logout().then(
+                          //       (value) => Get.offAllNamed('/login'),
+                          //     );
+                          // controller.logout();
+                          await controller.save();
+                          await authProvider.logout();
                         },
                         child: Text('Logout'.tr),
                       ),

@@ -32,10 +32,11 @@ class HomeView extends GetView<HomeController> {
                           children: [
                             controller.userPicture.value.isEmpty
                                 ? Image.asset('assets/images/user.png')
-                                : CircleAvatar(
-                                    backgroundImage: CachedNetworkImageProvider(
-                                        controller.userPicture.value),
-                                  ),
+                                : Obx(() => CircleAvatar(
+                                      backgroundImage:
+                                          CachedNetworkImageProvider(
+                                              controller.profilePic.value),
+                                    )),
                             Padding(
                               padding: EdgeInsets.only(left: 14),
                               child: Column(
@@ -43,7 +44,7 @@ class HomeView extends GetView<HomeController> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    'Welcome Back,'.tr,
+                                    'Selamat Datang,'.tr,
                                     style: mWelcomeTitleStyle,
                                   ),
                                   Text(
@@ -54,13 +55,13 @@ class HomeView extends GetView<HomeController> {
                                 ],
                               ),
                             ),
-                            Expanded(
-                                child: Container(
-                              alignment: Alignment.centerRight,
-                              child: IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(Icons.notifications_none)),
-                            ))
+                            // Expanded(
+                            //     child: Container(
+                            //   alignment: Alignment.centerRight,
+                            //   child: IconButton(
+                            //       onPressed: () {},
+                            //       icon: Icon(Icons.notifications_none)),
+                            // ))
                           ],
                         ),
                       ),
@@ -147,16 +148,16 @@ class HomeView extends GetView<HomeController> {
                         children: [
                           IconCard(
                             iconData: Icons.category,
-                            text: "Doctor Specialist".tr,
+                            text: "Topik Konseling".tr,
                             onTap: () {
                               controller.toDoctorCategory();
                             },
                           ),
                           IconCard(
                             iconData: Icons.list_alt_rounded,
-                            text: "Top Rated Doctor".tr,
+                            text: "Appointment".tr,
                             onTap: () {
-                              controller.toTopRatedDoctor();
+                              controller.toAppointment();
                             },
                           ),
                           IconCard(
@@ -169,39 +170,39 @@ class HomeView extends GetView<HomeController> {
                         ],
                       ),
                     ),
-                    Container(
-                      margin: EdgeInsets.only(bottom: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20),
-                            child: Text(
-                              'Top Rated Doctor'.tr,
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 20),
-                            child: TextButton(
-                              onPressed: () {
-                                controller.toTopRatedDoctor();
-                              },
-                              child: Text('View All'.tr,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.blue[300])),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
+                    // Container(
+                    //   margin: EdgeInsets.only(bottom: 20),
+                    //   child: Row(
+                    //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //     children: [
+                    //       Padding(
+                    //         padding: const EdgeInsets.only(left: 20),
+                    //         child: Text(
+                    //           'Top Rated Doctor'.tr,
+                    //           style: TextStyle(fontWeight: FontWeight.bold),
+                    //         ),
+                    //       ),
+                    //       Padding(
+                    //         padding: const EdgeInsets.only(right: 20),
+                    //         child: TextButton(
+                    //           onPressed: () {
+                    //             controller.toTopRatedDoctor();
+                    //           },
+                    //           child: Text('View All'.tr,
+                    //               style: TextStyle(
+                    //                   fontWeight: FontWeight.bold,
+                    //                   color: Colors.blue[300])),
+                    //         ),
+                    //       )
+                    //     ],
+                    //   ),
+                    // ),
                     Expanded(
                       child: RefreshIndicator(
                         displacement: 10,
                         onRefresh: () => test(),
                         child: FutureBuilder<List<Doctor>>(
-                          future: DoctorService().getTopRatedDoctor(),
+                          future: DoctorService().searchDoctor('a'),
                           builder: (context, snapshot) {
                             switch (snapshot.connectionState) {
                               case ConnectionState.waiting:
@@ -210,13 +211,13 @@ class HomeView extends GetView<HomeController> {
                               default:
                                 if (snapshot.hasError) {
                                   return Center(
-                                    child: Text('error '.tr +
-                                        snapshot.error.toString()),
+                                    child: Text(
+                                        'error + ' + snapshot.error.toString()),
                                   );
                                 } else if (snapshot.data!.isEmpty) {
                                   return Center(
                                     child: Text(
-                                      'Top Rated Doctor is empty '.tr,
+                                      'Para Psikolog Tidak Ada',
                                     ),
                                   );
                                 } else {
@@ -226,10 +227,10 @@ class HomeView extends GetView<HomeController> {
                                           DoctorCard(
                                             doctorName: snapshot
                                                 .data![index].doctorName,
-                                            doctorSpecialty: snapshot
-                                                .data![index]
-                                                .doctorCategory!
-                                                .categoryName,
+                                            // doctorSpecialty: snapshot
+                                            //     .data![index]
+                                            //     .doctorCategory!
+                                            //     .categoryName,
                                             imageUrl: snapshot
                                                 .data![index].doctorPicture,
                                             onTap: () {

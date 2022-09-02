@@ -28,6 +28,8 @@ import 'package:hallo_doctor_client/app/modules/list_doctor/bindings/list_doctor
 import 'package:hallo_doctor_client/app/modules/list_doctor/views/list_doctor_view.dart';
 import 'package:hallo_doctor_client/app/modules/login/bindings/login_binding.dart';
 import 'package:hallo_doctor_client/app/modules/login/views/login_view.dart';
+import 'package:hallo_doctor_client/app/modules/midtrans_payment/bindings/midtrans_payment_controller.dart';
+import 'package:hallo_doctor_client/app/modules/midtrans_payment/views/midtrans_payment_views.dart';
 import 'package:hallo_doctor_client/app/modules/payment_success/bindings/payment_success_binding.dart';
 import 'package:hallo_doctor_client/app/modules/payment_success/views/payment_success_view.dart';
 import 'package:hallo_doctor_client/app/modules/profile/bindings/profile_binding.dart';
@@ -61,6 +63,11 @@ class AppPages {
       page: () => HomeView(),
       binding: HomeBinding(),
     ),
+    // GetPage(
+    //   name: _Paths.MIDTRANS_PAYMENT,
+    //   page: () => MidtransView(),
+    //   binding: MidtransPaymentBinding(),
+    // ),
     GetPage(
       name: _Paths.PROFILE,
       page: () => ProfileView(),

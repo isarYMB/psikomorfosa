@@ -12,7 +12,7 @@ class AppointmentView extends GetView<AppointmentController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Appointment'.tr),
+        title: Text('Riwayat Konseling'.tr),
         centerTitle: true,
       ),
       body: RefreshIndicator(
@@ -49,7 +49,7 @@ class AppointmentView extends GetView<AppointmentController> {
               },
             ),
             onEmpty: Center(
-              child: EmptyList(msg: 'you don\'t have an appointment yet'.tr),
+              child: EmptyList(msg: 'Anda Belum Melakukan Konseling'.tr),
             ),
           ),
         ),

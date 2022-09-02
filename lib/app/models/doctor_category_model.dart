@@ -27,7 +27,7 @@ class DoctorCategory {
   @JsonKey(name: 'categoryId')
   String? categoryId;
   @JsonKey(name: 'categoryName')
-  String? categoryName;
+  dynamic categoryName;
   @JsonKey(name: 'iconUrl')
   String? iconUrl;
   DoctorCategory({this.id, this.categoryId, this.categoryName, this.iconUrl});

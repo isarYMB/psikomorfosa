@@ -1,15 +1,20 @@
 import 'package:flutter/animation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:hallo_doctor_client/app/models/order_model.dart';
 import 'package:hallo_doctor_client/app/models/time_slot_model.dart';
 import 'package:hallo_doctor_client/app/modules/appointment/controllers/appointment_controller.dart';
 import 'package:hallo_doctor_client/app/modules/dashboard/controllers/dashboard_controller.dart';
+import 'package:hallo_doctor_client/app/modules/detail_order/controllers/detail_order_controller.dart';
+import 'package:hallo_doctor_client/app/modules/profile/views/pages/kuisioner_view.dart';
+import 'package:hallo_doctor_client/app/service/order_service.dart';
 
 class PaymentSuccessController extends GetxController
     with GetSingleTickerProviderStateMixin {
   final count = 0.obs;
   late AnimationController animController;
   TimeSlot timeSlot = Get.arguments;
+
   var price = 0.obs;
   @override
   void onInit() {
@@ -26,9 +31,13 @@ class PaymentSuccessController extends GetxController
 
   void increment() => count.value++;
 
-  void goHome() {
-    Get.offAllNamed('dashboard');
-    Get.find<DashboardController>().selectedIndex = 2;
-    Get.find<AppointmentController>().getListAppointment();
+  // void goHome() {
+  //   Get.offAllNamed('dashboard');
+  //   Get.find<DashboardController>().selectedIndex = 2;
+  //   Get.find<AppointmentController>().getListAppointment();
+  // }
+
+  toKuisioner() {
+    Get.to(() => Kuisioner());
   }
 }

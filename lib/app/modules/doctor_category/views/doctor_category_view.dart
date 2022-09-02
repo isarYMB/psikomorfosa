@@ -12,6 +12,7 @@ class DoctorCategoryView extends GetView<DoctorCategoryController> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: mBackgroundColor,
+        foregroundColor: Colors.black,
         elevation: 0,
         title: Text(
           'Doctor Specialist'.tr,

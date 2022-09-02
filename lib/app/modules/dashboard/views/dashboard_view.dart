@@ -3,19 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hallo_doctor_client/app/modules/appointment/views/appointment_view.dart';
 import 'package:hallo_doctor_client/app/modules/doctor_category/views/doctor_category_view.dart';
+import 'package:hallo_doctor_client/app/modules/edukasi/views/edukasi_views.dart';
 import 'package:hallo_doctor_client/app/modules/home/views/home_view.dart';
 import 'package:hallo_doctor_client/app/modules/list_chat/views/list_chat_view.dart';
 import 'package:hallo_doctor_client/app/modules/profile/views/profile_view.dart';
+import 'package:hallo_doctor_client/modules/auth/pages/home.dart';
 
 import '../controllers/dashboard_controller.dart';
 
 class DashboardView extends GetView<DashboardController> {
   final List<Widget> bodyContent = [
+    HomePage(),
     HomeView(),
-    DoctorCategoryView(),
     AppointmentView(),
     ListChatView(),
-    ProfileView()
+    // ProfileView()
+    EdukasiView()
   ];
   @override
   Widget build(BuildContext context) {
@@ -27,34 +30,34 @@ class DashboardView extends GetView<DashboardController> {
             items: [
               BottomNavigationBarItem(
                   icon: Icon(
-                    Icons.home,
+                    Icons.group,
                     color: Colors.blue[500],
                   ),
-                  label: "Home".tr),
+                  label: "UpCerita".tr),
               BottomNavigationBarItem(
                   icon: Icon(
                     Icons.contacts,
                     color: Colors.blue[500],
                   ),
-                  label: "Doctor".tr),
+                  label: "Konseling".tr),
               BottomNavigationBarItem(
                   icon: Icon(
                     Icons.video_camera_front,
                     color: Colors.blue[500],
                   ),
-                  label: "Appointment".tr),
+                  label: "Riwayat".tr),
               BottomNavigationBarItem(
                   icon: Icon(
                     Icons.message,
                     color: Colors.blue[500],
                   ),
-                  label: "Chat".tr),
+                  label: "Psikolog".tr),
               BottomNavigationBarItem(
                   icon: Icon(
-                    Icons.person,
+                    Icons.book,
                     color: Colors.blue[500],
                   ),
-                  label: "Profile".tr),
+                  label: "Edukasi".tr),
             ],
             currentIndex: controller.selectedIndex,
             onTap: (index) {

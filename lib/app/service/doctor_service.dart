@@ -46,8 +46,7 @@ class DoctorService {
       List<Doctor> listDoctor = [];
       var listDoctorQuery = await FirebaseFirestore.instance
           .collection('Doctors')
-          .where('doctorCategory.categoryId',
-              isEqualTo: doctorCategory.categoryId)
+          .where('categoryName', arrayContains: doctorCategory.categoryName)
           .where('accountStatus', isEqualTo: 'active')
           .get();
 
@@ -102,11 +101,13 @@ class DoctorService {
       if (doctorName.isEmpty) return [];
       var doctorRef = await FirebaseFirestore.instance
           .collection('Doctors')
-          .where('doctorName',
-              isGreaterThanOrEqualTo: doctorName,
-              isLessThan: doctorName.substring(0, doctorName.length - 1) +
-                  String.fromCharCode(
-                      doctorName.codeUnitAt(doctorName.length - 1) + 1))
+          .where(
+            'doctorName',
+            isLessThan: doctorName,
+            // isLessThan: doctorName.substring(1, doctorName.length - 1) +
+            //     String.fromCharCode(
+            //         doctorName.codeUnitAt(doctorName.length - 1) + 1)
+          )
           .get();
       List<Doctor> listDoctor = doctorRef.docs.map((doc) {
         var data = doc.data();
@@ -125,7 +126,7 @@ class DoctorService {
   Future<String> getUserId(Doctor doctor) async {
     try {
       var user = await FirebaseFirestore.instance
-          .collection('Users')
+          .collection('users')
           .where('doctorId', isEqualTo: doctor.doctorId)
           .get();
       print('doc element' + user.docs.length.toString());

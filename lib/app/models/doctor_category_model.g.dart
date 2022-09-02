@@ -9,7 +9,7 @@ part of 'doctor_category_model.dart';
 DoctorCategory _$DoctorCategoryFromJson(Map<String, dynamic> json) =>
     DoctorCategory(
       categoryId: json['categoryId'] as String?,
-      categoryName: json['categoryName'] as String?,
+      categoryName: json['categoryName'] as dynamic,
       iconUrl: json['iconUrl'] as String?,
     );
 

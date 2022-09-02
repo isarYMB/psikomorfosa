@@ -73,11 +73,16 @@ class PaymentSuccessView extends GetView<PaymentSuccessController> {
               Divider(
                 height: 30,
               ),
+              // ElevatedButton(
+              //     onPressed: () {
+              //       controller.goHome();
+              //     },
+              //     child: Text('Go Home'.tr))
               ElevatedButton(
                   onPressed: () {
-                    controller.goHome();
+                    controller.toKuisioner();
                   },
-                  child: Text('Go Home'.tr))
+                  child: Text('Ceritakan Tentang Dirimu'.tr))
             ],
           ),
         ));

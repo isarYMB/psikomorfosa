@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hallo_doctor_client/app/models/order_detail_model.dart';
+import 'package:hallo_doctor_client/app/modules/midtrans_payment/views/midtrans_payment_views.dart';
 import 'package:hallo_doctor_client/app/utils/constants/constants.dart';
 import 'package:hallo_doctor_client/app/utils/constants/style_constants.dart';
 
@@ -90,7 +91,10 @@ class DetailOrderView extends GetView<DetailOrderController> {
                           textConfirm: 'Make Payment With Stripe',
                           onConfirm: () {
                             Get.back();
+                            // Navigator.of(context).push(MaterialPageRoute(
+                            //     builder: (context) => MidtransPage()));
                             controller.makePayment();
+                            // controller.update();
                           },
                         );
                         //

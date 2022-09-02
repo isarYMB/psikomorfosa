@@ -46,10 +46,10 @@ class DoctorCard extends StatelessWidget {
                           style: doctorNameTextStyle,
                         ),
                       ),
-                      Text(
-                        doctorSpecialty!,
-                        style: specialistTextStyle,
-                      ),
+                      // Text(
+                      //   doctorSpecialty!,
+                      //   style: specialistTextStyle,
+                      // ),
                       RatingBarIndicator(
                           rating: 4.5,
                           itemCount: 5,

@@ -25,8 +25,7 @@ class ListDoctorView extends GetView<ListDoctorController> {
                       itemBuilder: (context, index) {
                         return DoctorCard(
                             doctorName: listDoctor[index].doctorName!,
-                            doctorCategory:
-                                listDoctor[index].doctorCategory!.categoryName!,
+                            doctorCategory: listDoctor[index].doctorName!,
                             doctorPrice: currencySign +
                                 listDoctor[index].doctorPrice.toString(),
                             doctorPhotoUrl: listDoctor[index].doctorPicture!,

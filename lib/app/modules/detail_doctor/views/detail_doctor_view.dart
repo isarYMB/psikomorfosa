@@ -34,10 +34,10 @@ class DetailDoctorView extends GetView<DetailDoctorController> {
                   SizedBox(
                     height: 7,
                   ),
-                  Text(
-                    doctor.doctorCategory!.categoryName!,
-                    style: doctorCategoryStyle,
-                  ),
+                  // Text(
+                  //   doctor.categoryName!,
+                  //   style: doctorCategoryStyle,
+                  // ),
                   SizedBox(
                     height: 5,
                   ),

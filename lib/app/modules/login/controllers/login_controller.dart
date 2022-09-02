@@ -3,6 +3,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:hallo_doctor_client/app/service/auth_service.dart';
+import 'package:hallo_doctor_client/modules/auth/pages/phone/index.dart';
 
 class LoginController extends GetxController {
   //TODO: Implement LoginController
@@ -27,7 +28,7 @@ class LoginController extends GetxController {
   }
 
   void loginGoogle() {
-    authService.loginGoogle().then((value) => Get.offAllNamed('/dashboard'));
+    Get.offAll(PhoneLoginPage());
   }
 
   void login() async {

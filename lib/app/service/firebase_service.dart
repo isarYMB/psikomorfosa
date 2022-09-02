@@ -13,7 +13,7 @@ class FirebaseService {
   }
 
   Future userSetup(User user, String displayName) async {
-    CollectionReference users = FirebaseFirestore.instance.collection('Users');
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
     String uid = user.uid.toString();
     users.doc(uid).set({
       'displayName': displayName,
