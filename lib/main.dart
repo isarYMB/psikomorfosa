@@ -33,8 +33,8 @@ import 'package:form_builder_validators/localization/l10n.dart';
 
 bool isUserLogin = false;
 Future<void> main() async {
-  DashboardBinding().dependencies();
   WidgetsFlutterBinding.ensureInitialized();
+  DashboardBinding().dependencies();
   Get.put(DashboardController());
   Get.put(NotificationProvider());
   MobileAds.instance.initialize();
@@ -83,7 +83,7 @@ class _AppState extends State<App> {
     return Obx(
       () => GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: isUserLogin ? AppPages.LOGIN : AppPages.LOGIN,
+        initialRoute: isUserLogin ? AppPages.DASHBOARD : AppPages.LOGIN,
         getPages: AppPages.routes,
         title: t.AppName,
         builder: (context, myWidget) {
