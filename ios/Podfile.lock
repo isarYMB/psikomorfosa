@@ -609,7 +609,7 @@ PODS:
     - BoringSSL-GRPC/Interface (= 0.0.24)
   - BoringSSL-GRPC/Interface (0.0.24)
   - cloud_firestore (3.4.3):
-    - Firebase/Firestore (= 9.3.0)
+    - Firebase/Firestore (= 9.5.0)
     - firebase_core
     - Flutter
   - cloud_functions (3.3.3):
