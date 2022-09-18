@@ -3,7 +3,7 @@ version: 1.0.0+2
 publish_to: none
 description: A new Flutter project.
 environment:
-  sdk: 
+  sdk: '>=2.10.0 <3.0.0'
 
 dependencies:
   cupertino_icons: ^1.0.5
