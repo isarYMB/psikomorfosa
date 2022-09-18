@@ -82,7 +82,7 @@ dependencies:
 
 
 
-  async: 2.8.2
+ 
   auto_size_text: 3.0.0
   awesome_dialog: 2.2.1
   badges: 2.0.3
