@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "830619578040",
+    "firebase_url": "https://psikomorfosa-10500-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "psikomorfosa-10500",
+    "storage_bucket": "psikomorfosa-10500.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:830619578040:android:b4d30288496a45d62e8e4d",
+        "android_client_info": {
+          "package_name": "com.psikomorfosa.telekonseling"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "830619578040-2at9o0m88vgn8ds3ve3dn56mc7kg04k4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.psikomorfosa.telekonseling",
+            "certificate_hash": "d4ddf508d3d14359d781c4e2e2b3782714311028"
+          }
+        },
+        {
+          "client_id": "830619578040-ujj4jic9q40hdo4vetj1064lssmgqsp7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-v6NPZh2mNXAsEmRy0Ag0zT0p0jcKuTw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "830619578040-ujj4jic9q40hdo4vetj1064lssmgqsp7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
